@@ -1,0 +1,12 @@
+/bin/
+
+.DS_Store
+.gradle/
+/generated/
+.metadata
+/eclipse/
+/build/
+/libs/
+/.classpath
+/.project
+/.settings/
