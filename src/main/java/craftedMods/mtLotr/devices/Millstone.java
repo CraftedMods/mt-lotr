@@ -10,6 +10,7 @@ import lotr.common.recipe.LOTRMillstoneRecipes;
 import lotr.common.recipe.LOTRMillstoneRecipes.MillstoneResult;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
+import minetweaker.api.minecraft.MineTweakerMC;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.*;
 
@@ -81,7 +82,7 @@ public class Millstone
         if (millstoneRecipeMap != null)
         {
             MineTweakerAPI.apply (
-                new Add (MTLotrUtils.toStack (ingredient), new MillstoneResult (MTLotrUtils.toStack (result), chance)));
+                new Add (MineTweakerMC.getItemStack (ingredient), new MillstoneResult (MineTweakerMC.getItemStack (result), chance)));
         }
     }
 
@@ -169,7 +170,7 @@ public class Millstone
         if (millstoneRecipeMap != null)
         {
             MineTweakerAPI.apply (
-                new Remove (MTLotrUtils.toStack (ingredient), MTLotrUtils.toStack (result), chance, useIngredient,
+                new Remove (MineTweakerMC.getItemStack (ingredient),MineTweakerMC.getItemStack (result), chance, useIngredient,
                     useChance));
         }
     }
