@@ -20,11 +20,12 @@ import java.net.MalformedURLException;
 
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import craftedMods.mtLotr.devices.Millstone;
 import craftedMods.mtLotr.devices.ct.*;
@@ -36,6 +37,7 @@ import net.minecraft.event.*;
 import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 
 @Mod(modid = "mt-lotr", name = "MineTweaker Integration for the LOTR Mod", version = MTLotr.VERSION)
@@ -112,6 +114,9 @@ public class MTLotr
         {
             logger.error (String.format ("Version check failed"), e);
         }
+
+        FMLCommonHandler.instance ().bus ().register (this);
+        MinecraftForge.EVENT_BUS.register (this);
     }
 
     public Logger getLogger ()
@@ -143,7 +148,8 @@ public class MTLotr
     @SubscribeEvent
     public void onPlayerLoggedIn (PlayerLoggedInEvent event)
     {
-        if (MinecraftServer.getServer ().getConfigurationManager ().func_152596_g (event.player.getGameProfile ()))
+        if (FMLCommonHandler.instance ().getSide () == Side.SERVER
+            && MinecraftServer.getServer ().getConfigurationManager ().func_152596_g (event.player.getGameProfile ()))
         {
             // Player is OP
             if (versionChecker.compareRemoteVersion () == EnumVersionComparison.NEWER)
