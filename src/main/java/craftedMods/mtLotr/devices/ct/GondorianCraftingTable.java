@@ -19,7 +19,6 @@ package craftedMods.mtLotr.devices.ct;
 import craftedMods.mtLotr.devices.FactionCraftingTable;
 import lotr.common.recipe.LOTRRecipes;
 import minetweaker.api.item.*;
-import minetweaker.api.recipes.IRecipeFunction;
 import stanhebben.zenscript.annotations.*;
 
 @ZenClass(value = "mods.lotr.ct.gondor")
@@ -39,21 +38,21 @@ public class GondorianCraftingTable extends FactionCraftingTable
     }
 
     @ZenMethod
-    public static void addShaped (IItemStack output, IIngredient[][] ingredients, IRecipeFunction function)
+    public static void addShaped (IItemStack output, IIngredient[][] ingredients)
     {
-        instance.addShapedInternal (output, ingredients, function);
+        instance.addShapedInternal (output, ingredients);
     }
 
     @ZenMethod
-    public static void addShapedMirrored (IItemStack output, IIngredient[][] ingredients, IRecipeFunction function)
+    public static void addShapedMirrored (IItemStack output, IIngredient[][] ingredients)
     {
-        instance.addShapedMirroredInternal (output, ingredients, function);
+        instance.addShapedMirroredInternal (output, ingredients);
     }
 
     @ZenMethod
-    public static void addShapeless (IItemStack output, IIngredient[] ingredients, IRecipeFunction function)
+    public static void addShapeless (IItemStack output, IIngredient[] ingredients)
     {
-        instance.addShapelessInternal (output, ingredients, function);
+        instance.addShapelessInternal (output, ingredients);
     }
 
     @ZenMethod

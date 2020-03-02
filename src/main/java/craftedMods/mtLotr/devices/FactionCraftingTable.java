@@ -38,19 +38,19 @@ public abstract class FactionCraftingTable
         this.recipes = recipes;
     }
 
-    public void addShapedInternal (IItemStack output, IIngredient[][] ingredients, IRecipeFunction function)
+    public void addShapedInternal (IItemStack output, IIngredient[][] ingredients)
     {
-        this.addShaped (output, ingredients, function, false);
+        this.addShaped (output, ingredients, null, false);
     }
 
-    public void addShapedMirroredInternal (IItemStack output, IIngredient[][] ingredients, IRecipeFunction function)
+    public void addShapedMirroredInternal (IItemStack output, IIngredient[][] ingredients)
     {
-        this.addShaped (output, ingredients, function, true);
+        this.addShaped (output, ingredients, null, true);
     }
 
-    public void addShapelessInternal (IItemStack output, IIngredient[] ingredients, IRecipeFunction function)
+    public void addShapelessInternal (IItemStack output, IIngredient[] ingredients)
     {
-        ShapelessRecipe recipe = new ShapelessRecipe (output, ingredients, function);
+        ShapelessRecipe recipe = new ShapelessRecipe (output, ingredients, null);
         IRecipe irecipe = RecipeConverter.convert ((ShapelessRecipe) recipe);
         MineTweakerAPI.apply ((IUndoableAction) new ActionAddRecipe (irecipe, (ICraftingRecipe) recipe));
     }
@@ -199,12 +199,12 @@ public abstract class FactionCraftingTable
     private class ActionAddRecipe implements IUndoableAction
     {
         private final IRecipe recipe;
-//        private final ICraftingRecipe craftingRecipe;
+        // private final ICraftingRecipe craftingRecipe;
 
         public ActionAddRecipe (IRecipe recipe, ICraftingRecipe craftingRecipe)
         {
             this.recipe = recipe;
-//            this.craftingRecipe = craftingRecipe;
+            // this.craftingRecipe = craftingRecipe;
         }
 
         public void apply ()
